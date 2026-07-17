@@ -237,13 +237,13 @@ p {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .nav-links a {
   font-family: var(--font-title);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-dark);
   padding: 6px 2px;
@@ -271,9 +271,106 @@ p {
   color: var(--white) !important;
 }
 
-@media (max-width: 900px) {
+/* ---------- Nav "Plus" dropdown ---------- */
+
+.nav-more {
+  position: relative;
+}
+
+.nav-more-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-more-toggle:hover,
+.nav-more-toggle.active,
+.nav-more.open .nav-more-toggle {
+  color: var(--green);
+  border-color: var(--orange);
+}
+
+.nav-more-toggle .chevron {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.2s ease;
+}
+
+.nav-more.open .nav-more-toggle .chevron {
+  transform: rotate(180deg);
+}
+
+.nav-more-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 230px;
+  flex-direction: column;
+  gap: 2px;
+  display: none;
+  z-index: 200;
+}
+
+.nav-more.open .nav-more-menu {
+  display: flex;
+}
+
+.nav-more-menu a {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-bottom: none;
+  white-space: nowrap;
+}
+
+.nav-more-menu a:hover,
+.nav-more-menu a.active {
+  background: var(--cream-dark);
+  color: var(--green);
+  border-color: transparent;
+}
+
+@media (max-width: 1180px) {
   .nav-toggle {
     display: flex;
+  }
+
+  .nav-more {
+    width: 100%;
+  }
+
+  .nav-more-toggle {
+    display: none;
+  }
+
+  .nav-more-menu {
+    position: static;
+    display: flex;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    min-width: 0;
+    background: transparent;
+    gap: 0;
+  }
+
+  .nav-more-menu a {
+    padding: 10px 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--cream-dark);
   }
 
   .nav-links {

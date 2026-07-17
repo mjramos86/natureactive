@@ -16,6 +16,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  var moreWrap = document.querySelector('.nav-more');
+  var moreToggle = document.querySelector('.nav-more-toggle');
+
+  if (moreWrap && moreToggle) {
+    moreToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = moreWrap.classList.toggle('open');
+      moreToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!moreWrap.contains(e.target)) {
+        moreWrap.classList.remove('open');
+        moreToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
   var year = document.querySelector('[data-year]');
   if (year) {
     year.textContent = new Date().getFullYear();
